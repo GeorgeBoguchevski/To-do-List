@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Lista de Tarefa </title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="./imagens/baixados.jpg" alt="icone lista de  tarefas">
+            <h1> Lista de Tarefas</h1>
+        </div>
+        <input type="text" id="tarefaInput" placeholder="Digite uma Tarefa">
+        <button class="adicionarTarefa" onclick="adicionarTarefa()"> Adicionar </button>
+        <ul id="ListaTarefas"></ul>
+    </div>
+
+    <script>
+        let = tarefas =[];
+
+        function adicionarTarefa(){
+            const input = document.getElementById('tarefaInput')
+            const tarefa = input.value.trim();
+
+            if(tarefa){
+                tarefas.push(tarefa);
+                input.value = '';
+                atualizarLista();
+            }
+        }
+
+        function removerTarefa(index){
+            tarefas.splice(index, 1)
+            atualizarLista();
+        }
+
+        function atualizarLista(){
+            const lista = document.getElementById('ListaTarefas');
+            lista.innerHTML = '';
+            tarefas.forEach((tarefa, index) =>{
+                const li = document.createElement('li')
+
+                li.innerHTML = `${tarefa} <button class="removerTarefa" onclick = "remover(${index})">Remover</button>`;
+                
+                lista.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
